@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
 """### git merge 시
 작업하신 파일을 commit 하실 때는 .py 파일로 업로드 해주시길 바랍니다.
-.ipynb 파일로 merge 하는 법을 찾아보았으나, 몇가지 이슈들이 있는 것으로 확인되어ㅠ
-주피터나 코랩으로 작업하시는 분들도 다운로드>>.py로 다운로드를 이용하시어 업로드해주시길 부탁드립니다!
+
 * 코드 사용 시 약간의 디버깅이 작업 후 작업해주세요~~
 * 미처 코드에 포함되지 않은 내용은 추가해서 커밋부탁드립니다
 
@@ -50,10 +47,8 @@ def usage_time_calculate():
     return data
 
 def usage_period_calculate():
-    
-    x ='reservation_start_at'
-    y ='member_created_date'
-    data['usage_period'] = (data[x]-data[y])
+
+    data['usage_period'] = (data['reservation_start_at']-data['member_created_date'])
     data['가입후_이용기간']=data['가입후_이용기간'].dt.days
 
     return data
@@ -74,6 +69,7 @@ def divide_car_type(df, col):
                 df.loc[i, 'car_type'] = 'SUV'
 
 divide_car_type(data, 'car_name')
+
 
 # 각 지역별로 가장 많은 차종 데이터 찾기
 def most_popular_car(region_data):
