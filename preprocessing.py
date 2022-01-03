@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 """### git merge 시
 작업하신 파일을 commit 하실 때는 .py 파일로 업로드 해주시길 바랍니다.
 
-* 코드 사용 시 약간의 디버깅이 작업 후 작업해주세요~~
+* 코드 사용 시 약간의 디버깅 작업 후 작업해주세요~~
 * 미처 코드에 포함되지 않은 내용은 추가해서 커밋부탁드립니다
 
 """
@@ -105,3 +105,7 @@ def get_cycle(member_df):
 sample = df[df.member_id.eq(df.member_id.unique()[5000])]
 
 get_cycle(sample)
+
+
+# 동일한 데이터 테이블 사용 필요
+# 처음 작업하신 코드를 baseline으로 사용
