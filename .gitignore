@@ -128,8 +128,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Large Data Folder
-data/
+# Large Data
+data/socar_reservation_triplog.csv
+data/socar_usage_processed.csv
+
 
 # private directory
 cmj/
