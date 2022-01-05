@@ -73,9 +73,14 @@ def interval_features(member_df):
     intervals = start_time[1:].sub(start_time.values[:-1]).divide(np.timedelta64(1, 'D')).values
     return intervals.mean(), intervals.std()
 
+def wd_ratio(reservation_dt):
+    """
+    각 member별 대여일의 평일 비율 반환
+    """
+    return reservation_dt.dt.weekday.map(lambda dow: 0 if dow in [5,6] else 1).mean()
 
 # 각 이용정보 컬럼에 적용한 집계함수 매핑
-agg_dict = {'reservation_start_at':[usage_span, interval_features], 'region':'count',
+agg_dict = {'reservation_start_at':[usage_span, interval_features, wd_ratio], 'region':'count',
             'member_age':'first', 'member_gender':'first', 'member_total_distance':'first', 
             'is_vroom':'sum', 'usage_time':['mean', 'std'], 'usage_period':'max', 
             'num_trips':['mean', 'std'], 'car_type':[mode_type, gini_index], 
@@ -87,21 +92,20 @@ member = data.groupby('member_id').agg(agg_dict)
 member.columns = ['_'.join(col) for col in member.columns]
 member.columns = [col[:-6] if col.startswith('member') else col for col in member.columns]
 member = member.rename(columns={'reservation_start_at_usage_span':'usage_span', 'reservation_start_at_interval_features':'interval_features', 
-                                'region_count':'usage_cnt', 'is_vroom_sum':'vroom_cnt', 
-                                'usage_period_max':'member_period', 'car_type_mode_type':'car_type_mode', 
-                                'car_type_gini_index':'car_type_gini'})
+                                'reservation_start_at_wd_ratio':'wd_ratio', 'region_count':'usage_cnt', 
+                                'is_vroom_sum':'vroom_cnt', 'usage_period_max':'member_period', 
+                                'car_type_mode_type':'car_type_mode', 'car_type_gini_index':'car_type_gini'})
 
 # 추가변수 생성: 부름 이용확률, 1주(7일)당 이용건수
 member['vroom_per_usage'] = member.vroom_cnt.divide(member.usage_cnt)
 member['usage_per_week'] = member.usage_cnt.multiply(7).divide(member.usage_span)
 
-# interval features 분할
+# interval feature 분할
 member['interval_mean'] = member['interval_features'].map(lambda features: features[0])
 member['interval_std'] = member['interval_features'].map(lambda features: features[1])
 
-# 컬럼 선택
 use_col = ['member_age', 'member_gender', 'member_total_distance', 'member_period', 
-           'usage_per_week', 'interval_mean', 'interval_std',
+           'wd_ratio', 'usage_per_week', 'interval_mean', 'interval_std',
            'usage_time_mean', 'usage_time_std',  'vroom_per_usage',
            'num_trips_mean', 'num_trips_std', 'car_type_mode', 'car_type_gini', 
            'attraction_mean',  'attraction_std', 'restaurant_mean', 'restaurant_std', 'shopping_mean', 'shopping_std']

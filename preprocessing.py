@@ -41,19 +41,10 @@ data['num_trips']  = data.trip.map(lambda triplog: len(triplog.split(',')))
 # is_vroom int 변환
 data.is_vroom = data.is_vroom.astype(int)
 
-# 차종 분류 -> 추가 세분화 고려
-def classify_car_type(car_name):
-
-    NON_SUV = ['아반떼AD', '[쏘카세이브] 아반떼AD', '올뉴K3','아이오닉EV (제주)', '말리부', 
-             '클리오', 'K5', 'SM6', '스팅어', '쏘나타DN8', '[쏘카세이브] K5', '쏘나타 뉴라이즈',
-             '쏘나타 뉴라이즈(LPG)','K5 (LPG)', 'QM3', '[쏘카세이브] K5 (LPG)','벤츠 C200',
-             'K7 (LPG)', '2016 말리부', '더뉴아반떼']
-
-    if car_name in NON_SUV:
-        return 'non_SUV'
-    else:
-        return 'SUV'
-data['car_type'] = data.car_name.map(classify_car_type)
+# 차종 분류 -> compact(경차, 소형차) / sedan(세단) / compact_SUV (소형 SUV) / SUV(소형제외 SUV) / EV(전기차) / van (승합차)
+car_type = pd.read_csv('./data/car_group.csv')
+car_labeler = {name:label for name, label in zip(car_type.name, car_type.group)}
+data['car_type'] = data.car_name.map(car_labeler)
 
 
 # triplog에서 발생한 적있는 지역(시군구) 데이터프레임 생성
