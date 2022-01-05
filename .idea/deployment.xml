@@ -2,7 +2,7 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="eunji@117.16.137.110:22">
+      <paths name="eunji@117.16.137.110:22 password">
         <serverdata>
           <mappings>
             <mapping deploy="/home/eunji/project_dir/sodescar" local="$PROJECT_DIR$" web="/" />

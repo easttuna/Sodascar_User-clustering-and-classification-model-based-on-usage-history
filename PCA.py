@@ -3,6 +3,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 
 data_dir = '/home/eunji/project_dir/sodescar/data/member.csv'
@@ -42,8 +43,11 @@ plt.plot(pca.explained_variance_ratio_, 'o-')
 pca_pred = pd.DataFrame(pca.fit_transform(df_x))
 
 # get predict value
-
 pca_pred = pd.concat([pca_pred, df_y], axis=1)
-sns.scatterplot(pca_pred[0], pca_pred[1], data=pca_pred, hue ='car_type_mode', style='car_type_mode', s=100)
+#sns.scatterplot(pca_pred[0], pca_pred[1], data=pca_pred, hue ='car_type_mode', style='car_type_mode', s=100)
+
+
+save_dir = './data'
+pca_pred.to_csv(os.path.join(save_dir, 'pca_pred.csv'), index=False)
 
 
