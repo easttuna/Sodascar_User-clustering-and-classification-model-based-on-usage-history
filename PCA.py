@@ -75,3 +75,5 @@ save_dir = './data'
 pca_pred.to_csv(os.path.join(save_dir, 'pca_pred.csv'), index=False)
 
 
+
+
