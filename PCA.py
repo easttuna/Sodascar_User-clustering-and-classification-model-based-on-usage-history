@@ -28,10 +28,10 @@ df_scaled = StandardScaler().fit_transform(df_x)
 
 # PCA 적용
 # components 피쳐 갯수만큼 설정 -> 적절한 차원수는 10으로 보임
-pca = PCA(n_components=18)
+pca = PCA(n_components=3)
 pca_array = pca.fit_transform(df_scaled)
 
-principal_df = pd.DataFrame(data=pca_array, columns=['component' + str(i) for i in range(1,19)])
+principal_df = pd.DataFrame(data=pca_array, columns=['component' + str(i) for i in range(1,4)])
 
 # scree plot
 plt.title('Scree plot')
@@ -48,7 +48,7 @@ pca_pred = pd.concat([pca_pred, df_y], axis=1)
 #pca_pred.columns=['com1','com2','com3','labels']
 
 # 2차원 시각화
-#sns.scatterplot(pca_pred[0], pca_pred[1], data=pca_pred, hue ='car_type_mode', style='car_type_mode', s=100)
+sns.scatterplot(pca_pred[0], pca_pred[1], data=pca_pred, hue ='car_type_mode', style='car_type_mode', s=100)
 
 # 3차원 시각화
 '''

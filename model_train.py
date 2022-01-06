@@ -13,8 +13,7 @@ from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 # %matplotlib inline
 
-root = os.path.join(os.getcwd(), "drive", "MyDrive", "Colab Notebooks", "member.csv")
-root
+root = '/home/eunji/project_dir/sodescar/data/member.csv'
 
 df = pd.read_csv(root)
 df.head(3)
