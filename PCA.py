@@ -40,17 +40,18 @@ plt.ylabel('Cumulative Explained Variance')
 plt.plot(pca.explained_variance_ratio_, 'o-')
 #plt.show()
 
+
 pca_pred = pd.DataFrame(pca.fit_transform(df_x))
 
 # get predict value
 pca_pred = pd.concat([pca_pred, df_y], axis=1)
+#pca_pred.columns=['com1','com2','com3','labels']
 
 # 2차원 시각화
 #sns.scatterplot(pca_pred[0], pca_pred[1], data=pca_pred, hue ='car_type_mode', style='car_type_mode', s=100)
 
 # 3차원 시각화
 '''
-pca_pred.columns=['com1','com2','com3','labels']
 fig2 = plt.figure(figsize=(10,10))
 ax = fig2.add_subplot(111, projection='3d')
 
