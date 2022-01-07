@@ -1,25 +1,25 @@
 ﻿name,group
 아반떼AD,sedan
-스포티지,SUV
-카니발 11인승,van
-투싼(경유),SUV
+스포티지,SUV_VAN
+카니발 11인승,SUV_VAN
+투싼(경유),SUV_VAN
 그랜저IG (LPG),sedan
 코나,compact_SUV
 클리오,compact
 티볼리(경유),compact_SUV
 더뉴레이,compact
 프라이드,compact
-쏘렌토,SUV
+쏘렌토,SUV_VAN
 넥스트스파크,compact
 볼트EV (제주),compact
 말리부,sedan
-스포티지 더볼드,SUV
+스포티지 더볼드,SUV_VAN
 올뉴K3,sedan
 티볼리,compact_SUV
 올뉴모닝,compact
 레이,compact
-싼타페,SUV
-뉴 그랜드스타렉스,van
+싼타페,SUV_VAN
+뉴 그랜드스타렉스,SUV_VAN
 K7 (LPG),sedan
 SM6,sedan
 쏘나타 뉴라이즈(LPG),sedan
@@ -42,10 +42,10 @@ QM3,compact_SUV
 그랜저HG (경유),sedan
 재규어 E-Pace,sedan
 LF쏘나타,sedan
-스타렉스,van
+스타렉스,SUV_VAN
 벤츠 C200,sedan
 G80,sedan
-휠체어슬로프 X 카니발,SUV
+휠체어슬로프 X 카니발,SUV_VAN
 쏘나타DN8,sedan
 펫카시트 X 더뉴레이,compact
 Thule 자전거캐리어 X 더뉴아반떼,sedan
@@ -56,7 +56,7 @@ Thule 자전거캐리어 X 더뉴아반떼,sedan
 특가 코나,compact_SUV
 특가 더뉴레이,compact
 [쏘카세이브] 프라이드,compact
-[쏘카세이브] 투싼(경유),SUV
+[쏘카세이브] 투싼(경유),SUV_VAN
 [쏘카세이브] K5 (LPG),sedan
 [쏘카세이브] K5,sedan
 볼트EV,compact
