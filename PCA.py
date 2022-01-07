@@ -3,20 +3,13 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import seaborn as sns
-<<<<<<< HEAD
-=======
 from mpl_toolkits.mplot3d import Axes3D
 import os
->>>>>>> eunji
 
 
 data_dir = '/home/eunji/project_dir/sodescar/data/member.csv'
 
-<<<<<<< HEAD
-# PCA
-=======
 ### PCA
->>>>>>> eunji
 
 # 총 컬럼 22개
 df = pd.read_csv(data_dir)
@@ -35,37 +28,18 @@ df_scaled = StandardScaler().fit_transform(df_x)
 
 # PCA 적용
 # components 피쳐 갯수만큼 설정 -> 적절한 차원수는 10으로 보임
-<<<<<<< HEAD
-pca = PCA(n_components=18)
-pca_array = pca.fit_transform(df_scaled)
-
-principal_df = pd.DataFrame(data=pca_array, columns=['component' + str(i) for i in range(1,19)])
-
-# scree plot
-
-=======
 pca = PCA(n_components=3)
 pca_array = pca.fit_transform(df_scaled)
 
 principal_df = pd.DataFrame(data=pca_array, columns=['component' + str(i) for i in range(1,4)])
 
 # scree plot
->>>>>>> eunji
 plt.title('Scree plot')
 plt.xlabel('n_components')
 plt.ylabel('Cumulative Explained Variance')
 plt.plot(pca.explained_variance_ratio_, 'o-')
 #plt.show()
 
-<<<<<<< HEAD
-pca_pred = pd.DataFrame(pca.fit_transform(df_x))
-
-# get predict value
-
-pca_pred = pd.concat([pca_pred, df_y], axis=1)
-sns.scatterplot(pca_pred[0], pca_pred[1], data=pca_pred, hue ='car_type_mode', style='car_type_mode', s=100)
-
-=======
 
 pca_pred = pd.DataFrame(pca.fit_transform(df_x))
 
@@ -103,5 +77,4 @@ pca_pred.to_csv(os.path.join(save_dir, 'pca_pred.csv'), index=False)
 
 
 
->>>>>>> eunji
 
