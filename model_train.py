@@ -19,7 +19,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
 from sklearn.ensemble import RandomForestClassifier
-from imblearn.under_sampling import RandomUnderSampler
+from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 # %matplotlib inline
@@ -53,7 +53,7 @@ df['car_type']=encoding_features(df['car_type'])
 df.dropna()
 find_index4 = df[df['car_type']==4].index
 df = df.drop(find_index4)
-df.tail()
+#df.tail()
 
 car_type = df.car_type.unique().tolist()
 car_type
@@ -66,11 +66,11 @@ XminmaxScaled = minmaxScaler.fit_transform(x)
 
 y.value_counts()
 
-# imbalanced data 언더 샘플링 처리
-x_resampled, y_resampled = RandomUnderSampler(random_state=0).fit_resample(XminmaxScaled, y)
-y_resampled.value_counts()
+x_train, x_test, y_train, y_test = train_test_split(XminmaxScaled, y, test_size=0.2)
 
-x_train, x_test, y_train, y_test = train_test_split(x_resampled, y_resampled, test_size=0.2)
+# imbalanced data 오버 샘플링 처리
+x_resampled, y_resampled = SMOTE(random_state=0).fit_resample(x_train, y_train)
+y_resampled.value_counts()
 
 # k_fold validation 적용 (연산이 오래 걸릴수도 있음)
 # -> 연산이 너무 많이 걸리지 않는 선에서 최대 효율을 뽑을 필요가 있어보임
@@ -82,17 +82,17 @@ model = RandomForestClassifier()
 
 # 그리드 서치 파라미터 설정
 param_grid = {#'max_iter':[50, 100, 200, 300],
-              'n_estimators': [200, 300],
+              'n_estimators': [200],
               'max_depth': [30,40],
               'min_samples_split' : [25,30],
-              'min_samples_leaf': [25,30,40],
+              'min_samples_leaf': [25,30],
               }
 
 grid_search = GridSearchCV(estimator = model, 
                            param_grid = param_grid,
                            cv = 5)
 
-grid_search.fit(x_train, y_train)
+grid_search.fit(x_resampled, y_resampled)
 best_param = grid_search.best_params_
 
 # 최적 파라미터와 결과
@@ -109,6 +109,18 @@ final_model = ensemble.HistGradientBoostingRegressor(
            learning_rate=0.05,
            categorical_features = [2],
            loss='squared_error')
-
-final_model.fit(x_train, y_train)
 '''
+
+def metircs(y_test, pred):
+    accuracy = accuracy_score(y_test,pred)
+    precision = precision_score(y_test,pred)
+    recall = recall_score(y_test,pred)
+    f1 = f1_score(y_test,pred)
+    roc_score = roc_auc_score(y_test,pred,average='macro')
+    print('정확도 : {0:.2f}, 정밀도 : {1:.2f}, 재현율 : {2:.2f}'.format(accuracy,precision,recall))
+    print('f1-score : {0:.2f}, auc : {1:.2f}'.format(f1,roc_score,recall))
+
+def metric_result(model, x_train, x_test, y_train, y_test):
+    model.fit(x_train, y_train)
+    pred = model.predict(x_test)
+    metrics(y_test, pred)
