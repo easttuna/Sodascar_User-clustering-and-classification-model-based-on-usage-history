@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-import os
+
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 from tqdm import tqdm
 
 
 tqdm.pandas()
 
-# 쏘카이용정보 데이터 경로 지정 및 로드
+# 경로설정
 # data = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/socar_reservation_triplog.csv', 
 #                    parse_dates=['reservation_start_at', 'reservation_return_at', 'member_created_date'])
 
@@ -16,9 +15,8 @@ data = pd.read_csv('./data/socar_reservation_triplog.csv',
                    parse_dates=['reservation_start_at', 'reservation_return_at', 'member_created_date'])
 
 # 사용하지 않는 컬럼 제거
-drop_col = ['reservation_id', 'zone_address', 'car_id', 'zone_name', 'zone_lat', 'zone_lng', 
-            'reservation_created_lat', 'reservation_created_lng', 'zone_type1', 'zone_type2', 'zone_type3', 
-             'zone_address', 'zone_lat', 'zone_lng']
+drop_col = ['reservation_id', 'zone_address', 'car_id', 'reservation_created_lat', 'reservation_created_lng', 
+            'zone_type1', 'zone_type2', 'zone_type3', 'zone_address']
 
 data = data.drop(columns=drop_col)
 
@@ -91,12 +89,17 @@ trip_feautures = data.trip.progress_map(lambda log: get_trip_feature(log, region
 print('done')
 trip_feautures = pd.DataFrame(list(trip_feautures.values))
 
-# data와 concat 및 'trip' 컬럼 제거
-data = pd.concat([data.reset_index(drop=True), trip_feautures], axis=1).drop(columns=['trip'])
+
+# data와 concat
+data = pd.concat([data.reset_index(drop=True), trip_feautures], axis=1)
+
+# trip컬럼에서 각 행의 중복지역 제거
+def drop_dup_regions(triplog):
+    triplog = triplog.split(',')
+    triplog = [region.strip() for region in set(triplog)]
+    return '_'.join(triplog)
+
+data.trip = data.trip.map(drop_dup_regions)
 
 # 처리한 테이블 저장
-data_path = './data'
-if not os.path.exists(data_path):
-  os.makedirs(data_path)
-
-data.to_csv(os.path.join(data_path, 'socar_usage_processed.csv'), index=False)
+data.to_csv('./data/socar_usage_processed_coord.csv', index=False)
