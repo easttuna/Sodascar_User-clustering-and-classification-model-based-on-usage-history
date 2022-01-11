@@ -140,3 +140,10 @@
 
 ## [STEP4.] 고객 유형 예측 모델 생성 및 검증
 클러스터링을 통해 얻은 네개의 군집을 레이블로 하여 사용 이력이 5회인 초기 이용자들의 유형을 분류하는 모델을 생성함
+군집 분류를 위해 사용한 6개의 컬럼을 feature로 사용하였으나, member_type의 분류를 타겟으로 함  
+
+feature 데이터를 학습하기 위해, 분류에 유용한 standard scaler를 적용하였음.
+또한, 레이블 간의 불균형 문제를 해결하기 위해, 학습 데이터에 SMOTE OverSampling을 사용하였음.
+
+train set과 test set은 8:2 구성으로 사용하였으며, train set은 10881개, test setd은 2721개 데이터를 사용하였음.
+학습에는 5 k_fold validation과 GridSearchCV를 사용하였으며, 모델은 RandomForest Classifier, XGBoost Classifier, LGBM Classifier을 사용하고 성능을 비교하였음.
