@@ -19,7 +19,7 @@ python main.py
 
 
 
-# 제출자료
+# Team: SODA/SCAR
 
 # SOCAR 이용이력 기반 고객 세분화와 고객 유형 예측모델
 
@@ -159,7 +159,5 @@ python main.py
 ### 2) UMAP 차원축소
 
 ### 3) SOM (Self Organizing Map) 클러스터링
-
-### 4)
 
 ## [STEP4.] 고객 유형 예측 모델 생성 및 검증
