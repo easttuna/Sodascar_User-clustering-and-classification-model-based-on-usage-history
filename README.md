@@ -199,27 +199,28 @@
 - feature 데이터를 학습하기 위해, 분류에 유용한 standard scaler를 적용하였음.  
 - 또한, 레이블 간의 불균형 문제를 해결하기 위해, 학습 데이터에 SMOTE OverSampling을 사용하였음.  
 - train set과 test set은 8:2 구성으로 사용하였으며, train set은 10881개, test setd은 2721개 데이터를 사용하였음.  
-- 학습에는 2 cross validation과 GridSearchCV를 사용하였으며, 모델은 Logistic Regression과 트리 기반 6가지 모델을 사용하고 성능을 비교하였음.
-- 학습 결과, Logistic Regression, Decision Tree, Random Forest, xgboost 모델을 Voting soft로 학습한 Ensemble model에서  train acc %, test acc% 으로 가장 좋은 성능을 보였음.
+- 학습에는 5 k fold validation과 GridSearchCV를 사용하였으며, 모델은 Logistic Regression과 트리 기반 6가지 모델을 사용하고 성능을 비교하였음.
+- 학습 결과, 250개의 분류기를 양상블 학습한 Random Forest model에서  full record와 5record에서 각각 train acc 93.08%와 67.43%, test acc 92.61%와 67.43%으로 가장 좋은 성능을 보였음.
 
 ### 2) 성능 평가 및 분석  
-성능 평가는 Voting Soft로 학습한 Ensemble model의 test 결과에 기초함  
 - full record와 5record 성능 비교  
-full record 성능 평가
-
+full record 성능 평가  
+![image](https://user-images.githubusercontent.com/65028694/149093307-714908bc-9226-41f7-b734-245f6776ca63.png)![image](https://user-images.githubusercontent.com/65028694/149094151-46f4937a-1efc-465b-af25-99c59a1f22d3.png)  
 5record 성능 평가  
-![image](https://user-images.githubusercontent.com/65028694/149075888-5c9dc18b-a023-44d6-95d6-4b612e99dfcf.png)
-![image](https://user-images.githubusercontent.com/65028694/149075844-66a2339d-a8eb-489e-9d15-329652f5b662.png)
-
+![image](https://user-images.githubusercontent.com/65028694/149094215-74e71c00-86d3-41aa-acbc-9ded2309b06b.png)![image](https://user-images.githubusercontent.com/65028694/149094266-cff69404-c0a5-46c1-b4db-50fde9a1c8ee.png)  
+-> 성능 평가는 Random Forest 학습한 Ensemble model의 test 결과에 기초함.
 
 - full record와 5record confusion matrix 결과 비교  
+![image](https://user-images.githubusercontent.com/65028694/149093009-2251163b-555c-4bd9-adf9-67a991f5dc40.png)![image](https://user-images.githubusercontent.com/65028694/149092974-01ced712-96f7-457d-9d44-e176bf335de0.png)
 
-![image](https://user-images.githubusercontent.com/65028694/149076644-f5fd0518-39af-4cd4-843e-42dfd9549c98.png)
+- feature importance  변화 비교
+![image](https://user-images.githubusercontent.com/65028694/149095111-cc8c0413-774f-4576-8c63-38ce91cdab3a.png)
+![image](https://user-images.githubusercontent.com/65028694/149095151-384c77e1-ffc6-45a5-b42f-d2d69999dd51.png)
+
+
 
 ## `결론`
->- 차량 공유의 시장규모가 커지며 이용자들의 **차량 이용 목적 및 행태** 또한 다양해졌습니다.  
->- 본 프로젝트는 쏘카 고객의 이용행태로부터 **이용특성**을 뚜렷히 나타내는 변수를 생성하고, 이에기반해 **고객 유형을 군집화** 하였습니다.  
->- 또한 **일부의 이용이력**만으로 전체 이용이력으로 부여된 **정답라벨(이용자 유형)를 예측**하는 모델을 생성하여, **고객유형을 빠르게 파악하고 대응**하는데에 도움이되고자 하였습니다.  
->- 희소한 정보를 바탕으로한 예측모형이 높은 정확도를 보이지는 않지만 classification threshold을 조정해 **presicion을 높임으로써** 보다 **확실한 예측을 활용한 고객 접근**이 가능할 것입니다.  
->- 본 프로젝트에서는 군집의 시계열(계절적) 변화 패턴을 확인하지 않았지만 **시계열적 변화를 추적**하고 member가 아닌 **usage를 대상으로도 군집분석**을 하여 보다 이용현황을 보다 상세히 파악할 수 있을 것입니다.  
->- 고객 유형 군집화 및 예측 프레임워크에 포함된 아이디어가 보다 상세한 이용이력을 바탕으로한 **개인화 추천**에도 도움이 될 수 있기를 바랍니다.
+- 차량 공유의 시장규모가 커지며 이용자들의 차량 이용 목적 및 행태 또한 다양해졌습니다.
+- 본 프로젝트는 쏘카 고객의 이용행태로부터 이용특성을 뚜렷히 나타내는 변수를 생성하고, 이에기반해 고객 유형을 군집화 하였습니다.
+- 또한 일부의 이용이력만으로 전체 이용이력으로 부여된 정답라벨(이용자 유형)를 예측하는 모델을 생성하여, 고객유형을 빠르게 파악하고 대응하는데에 도움이되고자 하였습니다.
+- 예측모형이 높은 정확도를 보이지 않으나, 
