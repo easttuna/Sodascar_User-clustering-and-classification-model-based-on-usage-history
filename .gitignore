@@ -135,3 +135,6 @@ data/socar_usage_processed_coord.csv
 
 # private directory
 cmj/
+
+# for security
+컬럼정의서.xlsx
