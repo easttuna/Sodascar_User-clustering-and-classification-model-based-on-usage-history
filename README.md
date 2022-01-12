@@ -64,7 +64,7 @@
 
 ![region_score_example](https://user-images.githubusercontent.com/79245556/149073677-208e9fca-0524-42ea-84d4-ad707492f8ee.png)
 
-## `[STEP2.] Member별 이용정보 집계, Member Table 생성`
+## `[STEP2.] User별 이용정보 집계, User Table 생성`
 
 - 각각의 user는 **복수의 이용정보**를 가지고 있으며, 이를 해당 user의 특성을 잘 표현할 수 있는 방향으로 종합하여 user 변수를 생성해야함
 - 이용이력이 적은 user의 경우 소량의 정보로 user의 특성이 잘못 파악될 가능성이 있으므로, 이용이력이 **최소 5회** 존재하는 user 만을 대상으로 user변수를 생성하였음
