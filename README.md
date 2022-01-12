@@ -203,7 +203,7 @@
 - 학습 결과, 250개의 분류기를 양상블 학습한 Random Forest model에서  full record와 5record에서 각각 **train acc 93.08%와 67.43%, test acc 92.61%와 64.57%** 으로 가장 좋은 성능을 보였음
 
 ### 2) 성능 평가 및 분석  
-- **full record와 5record 성능 비교 ** 
+- **full record와 5record 성능 비교** 
   - **full record** 성능 평가  
 ![image](https://user-images.githubusercontent.com/65028694/149093307-714908bc-9226-41f7-b734-245f6776ca63.png)![image](https://user-images.githubusercontent.com/65028694/149146714-6d5b41b5-7c8e-45f6-adac-dd3cfa2f9f80.png)  
   - **5 record** 성능 평가  
