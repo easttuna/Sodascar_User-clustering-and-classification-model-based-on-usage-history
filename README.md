@@ -151,3 +151,5 @@
 - 학습에는 5 k_fold validation과 GridSearchCV를 사용하였으며, 모델은 RandomForest Classifier, XGBoost Classifier, LGBM Classifier 등 7가지 모델을 사용하고 성능을 비교하였음.  
 
 ### 2) 성능 평가 및 분석
+- full record와 5record 성능 비교
+- confusion matrix 결과 비교
