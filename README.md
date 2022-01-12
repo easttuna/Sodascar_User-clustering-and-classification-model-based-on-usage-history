@@ -212,7 +212,7 @@
   - full record 데이터와 5 recond 데이터를 사용하여 각각 학습 및 추론을 수행한 결과, full record 데이터를 가지고 학습한 결과에서 뚜렷한 성능을 보인다는 것을 확인할 수 있음
   - 반면, **full record**의 경우에 비해 **5 record** 데이터는 이용자의 전체 이력을 사용하지 않고 **초기 5회 이력**만을 사용하였기 때문에 군집의 대표성을 확인하는 것에는 다소 부족해 보임
 
-- **full record와 5 record confusion matrix 결과 비교**     
+- **full record와 5 record confusion matrix 결과 비교**   
   <img src="https://user-images.githubusercontent.com/65028694/149147565-e4503379-8f61-4293-8e29-0253e0578f75.png" width="400" height="300">
   <img src="https://user-images.githubusercontent.com/65028694/149145778-04df5fe3-9413-47f7-95dd-a3707b58c91a.png" width="400" height="300">  
 
