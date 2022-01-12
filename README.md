@@ -18,7 +18,7 @@
 
 ## `작업 개요`
 
-![framwork](https://user-images.githubusercontent.com/79245556/149088905-ad4b70f0-f4a2-4bbf-8135-71ab5d53a7a3.png)
+![framework](https://user-images.githubusercontent.com/79245556/149143424-379e2669-3843-4085-ac0f-3c1648e7fa8c.png)
 
 ### [STEP1.] ‘쏘카 이용정보’ 전처리 및 변수 가공
 
