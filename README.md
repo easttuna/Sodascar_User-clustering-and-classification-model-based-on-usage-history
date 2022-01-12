@@ -222,7 +222,7 @@
 - feature importance  변화 비교  
 ![image](https://user-images.githubusercontent.com/65028694/149095111-cc8c0413-774f-4576-8c63-38ce91cdab3a.png)
 ![image](https://user-images.githubusercontent.com/65028694/149095151-384c77e1-ffc6-45a5-b42f-d2d69999dd51.png)
-  - full record 데이터로 학습한 결과,'interval_med','usage_med','attraction_mean'순으로 고르게 중요도를 차지하고 있는 반면, 5 record 데이터로 학습한 결과, 'interval_med','usage_med','attraction_mean'외 다른 피쳐는 큰 차이로 적은 중요도를 차지하는 모습을 보임
+  - **full record** 데이터로 학습한 결과,'interval_med','usage_time_med','attraction_mean'순으로 고르게 중요도를 차지하고 있는 반면, **5 record** 데이터로 학습한 결과, 'interval_med','usage_time_med','attraction_mean'외 다른 피쳐는 큰 차이로 적은 중요도를 차지하는 모습을 보임
   - 이것은 전체 이용 내역과 초기 이력을 기반한 군집 분류에 있어, **사용 빈도와 장-단거리 여부, 일상-여행 여부**가 중요한 요소임을 나타냄
 
 
