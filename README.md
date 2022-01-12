@@ -132,9 +132,8 @@
 - 클러스터링에 사용할 member 특성변수간의 **선형관계가 작아**, 서로 **다른 특성**을 대변해주고 있음을 알 수 있음
 - 극단치를 제거하여, point간의 거리룰 측정하는데 영향을 주지 않도록하였음
     
-![corr_plot_resized](https://user-images.githubusercontent.com/79245556/149087715-57f15952-ebbb-48dc-a72c-75195c9bf746.png)
+![corr_![corr_plot_resized](https://user-images.githubusercontent.com/79245556/149090911-f055b3ff-f08b-4384-8ad4-7d453e043b09.png)
 
-    
 
 ### 1) UMAP 차원 축소
 
