@@ -157,22 +157,22 @@
 
 - 군집이 명확한 경계로 나누어지지 않았기 때문에  개별 point의 silhouette score가 0.3 이상인 경우만을 선택해 시각화 하였으며, 각 군집별 변수 분포를 확인하며 군집의 특성을 해석하였음
     
-![cluster_in_2dim](https://user-images.githubusercontent.com/79245556/149073775-61370616-01c5-43a8-aa5e-f97195237f97.png)
+![cluster_in_2dim](https://user-images.githubusercontent.com/79245556/149150999-814e963e-4be6-45d2-b556-57a054d50e52.png)
 
     
 - **군집B는 대여존과 방문지가 타 군집에 비해 정형적임**
 
-![cluster_hist1](https://user-images.githubusercontent.com/79245556/149073807-0206b65a-9b9b-4e01-a1fd-220defe6b9e6.png)
+![cluster_hist1](https://user-images.githubusercontent.com/79245556/149151042-8be101f2-363a-42e8-aefd-72525a3f764f.png)
 
 
 - **군집A, B는 평일 대여의 비율이 높고, 비교적 짧은 주기로 이용함**
 - **군집D는 주말 대여 비율이 높고, 가장 대여주기가 긴 군집임**
 
-![cluster_hist2](https://user-images.githubusercontent.com/79245556/149073827-a1bf0063-9098-4503-9abc-c9f9b6c7a7e2.png)
+![cluster_hist2](https://user-images.githubusercontent.com/79245556/149151045-10475c5d-1375-4897-abff-43368a437725.png)
 
 - **군집 C는 타 군집에 비해 1회 이용시 긴 시간을 대여하고, 관광지가 많은 지역을 방문함**
 
-![cluster_hist3](https://user-images.githubusercontent.com/79245556/149073832-379a804f-3908-4141-98d2-989b6a1ac920.png)
+![cluster_hist3](https://user-images.githubusercontent.com/79245556/149151046-3a734ea3-75f0-4274-b35a-db9562f31c71.png)
 
 ### `4) 군집결과 종합 및 member 유형화`
 
