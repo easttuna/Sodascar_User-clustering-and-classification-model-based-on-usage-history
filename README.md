@@ -148,6 +148,6 @@
 - feature 데이터를 학습하기 위해, 분류에 유용한 standard scaler를 적용하였음.  
 - 또한, 레이블 간의 불균형 문제를 해결하기 위해, 학습 데이터에 SMOTE OverSampling을 사용하였음.  
 - train set과 test set은 8:2 구성으로 사용하였으며, train set은 10881개, test setd은 2721개 데이터를 사용하였음.  
-- 학습에는 5 k_fold validation과 GridSearchCV를 사용하였으며, 모델은 RandomForest Classifier, XGBoost Classifier, LGBM Classifier을 사용하고 성능을 비교하였음.  
+- 학습에는 5 k_fold validation과 GridSearchCV를 사용하였으며, 모델은 RandomForest Classifier, XGBoost Classifier, LGBM Classifier 등 7가지 모델을 사용하고 성능을 비교하였음.  
 
 ### 2) 성능 평가 및 분석
