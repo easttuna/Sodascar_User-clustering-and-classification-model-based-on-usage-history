@@ -60,7 +60,7 @@
 
 ![region_score_example](https://user-images.githubusercontent.com/79245556/149073677-208e9fca-0524-42ea-84d4-ad707492f8ee.png)
 
-## [STEP2.] Member별 이용정보 집계, Member Table 생성
+## `[STEP2.] Member별 이용정보 집계, Member Table 생성`
 
 - 각각의 member는 복수의 이용정보를 가지고 있으며, 이를 해당 member의 특성을 잘 표현할 수 있는 방향으로 종합하여 member 변수를 생성해야함
 - 이용이력이 적은 member의 경우 소량의 정보로 member의 특성이 잘못 파악될 가능성이 있으므로, 이용이력이 최소 5회 존재하는 member 만을 대상으로 Member 변수를 생성하였음
@@ -123,14 +123,13 @@
     - **usage_time_med**가 작을 수록 지역내 단거리 이용을 위해 이용할 것
     - **attraction_mean**이 클수록 주로 여행목적으로 쏘카를 이용할 것
 
-## [STEP3.] Member 클러스터링 및 고객 유형 해석
+## `[STEP3.] Member 클러스터링 및 고객 유형 해석`
 
 - 클러스터링에 사용할 member 특성변수간의 선형관계가 낮아, 서로 다른 특성을 대변해주고 있음을 알 수 있음
 - 극단치를 제거하여, point간의 거리룰 측정하는데 영향을 주지 않도록하였음
     
 ![corr_plot](https://user-images.githubusercontent.com/79245556/149073732-c7a70eb9-32a3-4e73-b4cb-9867b85b703b.png)
 
-    
 
 ### 1) UMAP 차원 축소
 
@@ -188,7 +187,7 @@
 
 </aside>
 
-## [STEP4.] 고객 유형 예측 모델 생성 및 검증
+## `[STEP4.] 고객 유형 예측 모델 생성 및 검증`
 - 클러스터링을 통해 얻은 네개의 군집을 레이블로 하여 사용 이력이 5회인 초기 이용자들의 유형을 분류하는 모델을 생성함  
 - 군집 분류를 위해 사용한 6개의 컬럼을 feature로 사용하였으, member_type의 분류를 타겟으로 함  
 
