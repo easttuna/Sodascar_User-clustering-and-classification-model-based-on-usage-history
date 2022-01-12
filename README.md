@@ -101,7 +101,7 @@
     
 - **산출 예시**
 
-![gini_example_resized](https://user-images.githubusercontent.com/79245556/149087722-0147ef46-720a-4856-83ff-c45dbca965d3.png)
+![gini_example](https://user-images.githubusercontent.com/79245556/149144001-55cc79a5-bbea-46c1-b691-a0eaefdf35fa.png)
 
 - 위의 연산을 예약존 뿐만아니라 방문지 정보에도 동일하게 적용하여 다음의 두 변수를 도출함
     - **zone_gini**: 각 user가 이용해본 예약존의 다양성
