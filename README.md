@@ -47,7 +47,8 @@
 - 일부 속성을 가공하여 6개의 새로운 변수를 생성하였으며, 30분 미만의 이용 및 방문지가 정보가 없는 행을 제거하였음
 - 방문지 정보에 외부데이터를 매핑해 attraction_score, restaurant_score, shopping_score를 도출한 과정은 아래 추가 설명함
 
-![usage_feature_gen](https://user-images.githubusercontent.com/79245556/149073530-9c30aa1c-42a2-44e4-bf3c-6a022bc701a5.png)
+![usage_feature_gen_resized](https://user-images.githubusercontent.com/79245556/149087367-5ab96e95-20e3-45fb-a16e-c03fa9f7d2ae.png)
+
 
 ### 2) 이용정보의 관광지, 식당, 쇼핑점 점수 생성 방법
 
