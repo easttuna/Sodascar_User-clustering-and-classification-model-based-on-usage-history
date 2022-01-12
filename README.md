@@ -213,7 +213,7 @@ full record 성능 평가
 - full record와 5record confusion matrix 결과 비교  
 ![image](https://user-images.githubusercontent.com/65028694/149093009-2251163b-555c-4bd9-adf9-67a991f5dc40.png)![image](https://user-images.githubusercontent.com/65028694/149092974-01ced712-96f7-457d-9d44-e176bf335de0.png)
 
-- feature importance  변화 비교
+- feature importance  변화 비교  
 ![image](https://user-images.githubusercontent.com/65028694/149095111-cc8c0413-774f-4576-8c63-38ce91cdab3a.png)
 ![image](https://user-images.githubusercontent.com/65028694/149095151-384c77e1-ffc6-45a5-b42f-d2d69999dd51.png)
 
