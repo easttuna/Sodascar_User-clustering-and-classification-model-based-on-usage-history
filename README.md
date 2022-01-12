@@ -1,7 +1,6 @@
 ! git pull하여 사용해주세요 
 
-# SOCAR 이용이력 기반 고객 세분화와 초기 이용자 유형 예측모델
-! SOCAR 이용이력 기반 고객 군집화? 및 초기 이용자 유형 분류?모델
+# SOCAR 이용이력 기반 고객 세분화와 고객 유형 예측모델
 
 ## 프로젝트 소개
 
@@ -19,13 +18,13 @@
     - 고객층별 이용행태를 확인하여 맞춤 상품 제공, 서비스 개선이 가능함
 
 ## 작업 개요
-![image](https://user-images.githubusercontent.com/65028694/148731329-0ed979ad-090c-43c8-9ee2-f5315e8ef31f.png)
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%2072aa660ab14c4d75b7814c3a21200109/Untitled.png)
+
+![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled.png)
 
 ### [STEP1.] ‘쏘카 이용정보’ 전처리 및 변수 가공
 
 - 제공받은 쏘카 이용정보 테이블을 가공하여 각 ‘이용’의 특성과 목적을 나타내는 변수를 가공 및 생성함
-- 기존재하는 컬럼을 변환하고  해당 이용자가 방문한 지역로그 (TripLog)를 통해 외부데이터를 매핑함
+- 기존재하는 컬럼을 변환하고  해당 이용자가 방문한 지역정보를 통해 외부데이터를 매핑함
 
 ### [STEP2.] Meber별 이용정보 집계, Member Table 생성
 
@@ -47,32 +46,25 @@
 
 ### 1) 전처리 및 변수 생성
 
-- 쏘카 이용정보 테이블에는 총 751,548행이 존재하며, member의 고유식별자를 포함하여 22개의 컬럼이 존재함
-- 30분 미만의 이용 및 member나이, member 성별, Trip 정보가 존재하지 않는 행은 제외하였음
-- 7개의 기존 변수를 가공하여 6개의 새로운 변수를 생성하였음
-- TripLog에 외부데이터를 매핑해 attraction_score, restaurant_score, shopping_score를 도출한 과정은 아래 추가 설명함
+- 일부 속성을 가공하여 6개의 새로운 변수를 생성하였으며, 30분 미만의 이용 및 방문지가 정보가 없는 행을 제거하였음
+- 방문지 정보에 외부데이터를 매핑해 attraction_score, restaurant_score, shopping_score를 도출한 과정은 아래 추가 설명함
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%2072aa660ab14c4d75b7814c3a21200109/Untitled%201.png)
+![usage_feature_gen](https://user-images.githubusercontent.com/79245556/149073530-9c30aa1c-42a2-44e4-bf3c-6a022bc701a5.png)
 
-### 2) Trip의 관광지, 식당, 쇼핑점 점수 생성 방법
+### 2) 이용정보의 관광지, 식당, 쇼핑점 점수 생성 방법
 
-- 각 이용정보 별 방문한 지역이 ‘시군구’의 단위로 존재함
+- 각 이용정보 별 방문한 지역이 ‘시군구’의 단위로 제공됨
 - 방문지의 이름만으로는 이용의 특성을 발견할 수 없으므로, 이용의 특성을 반영하는 수치형 정보로 변환함
 - 한국문화정보원의 ‘**국내여행 소비 역세권지도**’에 시군구별 관광지 수, 음식점 수, 쇼핑점 수와 인구수가 존재함 ([https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=98124fc8-5024-4b27-b9a7-5631021ed5a8](https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=98124fc8-5024-4b27-b9a7-5631021ed5a8))
-- TripLog상의 가 방문지역별 인구 천명 대비 관광지, 음식점, 쇼핑점 수를 구한 뒤, 모든 지역에 대해 평균내어 해당 이용의 전반적인 방문지 특성을 산출함
+- 방문지역별 인구 천명 대비 관광지, 음식점, 쇼핑점 수를 구한 뒤, 모든 지역에 대해 평균내어 해당 이용의 전반적인 방문지 특성을 산출함
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%2072aa660ab14c4d75b7814c3a21200109/Untitled%202.png)
-
-### 3) 결과
-
-- [STEP1.]을 통해 507,800 rows, 19 columns의 테이블 ‘socar_usage_processed’를 생성하여 다음 단계에서 사용함
-
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%2072aa660ab14c4d75b7814c3a21200109/Untitled%203.png)
+![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled%202.png)
 
 ## [STEP2.] Member별 이용정보 집계, Member Table 생성
 
 - 각각의 member는 복수의 이용정보를 가지고 있으며, 이를 해당 member의 특성을 잘 표현할 수 있는 방향으로 종합하여 member 변수를 생성해야함
-- 수치형 변수는 각 member별로 ‘mean’ ,’median’, ‘std.’ 등 단순 기술통계적 집계가 가능하나 (ex. member 평균 이용시간: 해당 member의 모든 이용시간의 평균) 대여존, 방문지이력(TripLog) 등 범주형 변수는 불가능함
+- 이용이력이 적은 member의 경우 소량의 정보로 member의 특성이 잘못 파악될 가능성이 있으므로, 이용이력이 최소 5회 존재하는 member 만을 대상으로 Member 변수를 생성하였음
+- 수치형 변수는 각 member별로 ‘mean’ ,’median’, ‘std.’ 등 단순 기술통계적 집계가 가능하나 (ex. member 평균 이용시간: 해당 member의 모든 이용시간의 평균) 대여존, 방문지이력 등 범주형 변수는 불가능함
 - 범주형 변수를 처리한 방법을 위주로 Member Table 생성 과정을 설명함
 
 ### 1) Gini Index를 활용한 예약존 다양성, 방문지 다양성 변수 생성
@@ -80,7 +72,7 @@
 - **배경**
     - ‘유사한 이용을 반복하는 member’와 ‘이용행태가 다양한 member’를 구분하기 위한 지표를 도출하고자 함
     - 단순히 예약해본 존과 방문해본 지역의 가짓수를 count 할 시, 각 범주가 차지하는 비중이 손실됨
-        - 예시
+        - **예시**
             1. 두명의 member x,y는 총 5개의 zone을 이용해봄
             2. x는 대부분의 이용을 5개 중 한곳에서 하고, 나머지 4개의 zone은 한번씩만 이용해봄
             3. y는 비슷한 5개 존을 골고루 이용함
@@ -88,26 +80,26 @@
     - 각 범주의 발생확률로 다양성을 계산할 수 있는 **불순도 지표** Gini Index를 사용함
     
 - **계산 과정**
-    - 한 memeber의 모든 이용정보에 존재하는 예약존(zone_name), 방문지(trip) 내역 통합
+    - 한 memeber의 모든 이용정보에 존재하는 예약존, 방문지 내역 통합
     - (각존의 예약건수 / 전체 이용건수)를 계산하여, 각 존의 예약확률로 변환
     - Gini index 연산으로 다양성(불순도) 지수 도출
     - **하나의 zone만 이용할 시, Gini Index는 0으로 최저값을 가지며, 여러 존을 유사한 비중으로 이용할 수록 1에 가깝게 증가함**
     
     ```python
-    def zone_gini(zone_name):
+    def zone_gini(zone):
         """
         각 member별 이용한 zone의 gini index 반환
         """
-        probs = zone_name.value_counts(normalize=True).values
+        probs = zone.value_counts(normalize=True).values
         gini = 1- np.power(probs, 2).sum()
         return gini
     ```
     
-- 실제 데이터 예시
-    
-    ![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%2072aa660ab14c4d75b7814c3a21200109/Untitled%204.png)
-    
-- 위의 연산을 예약존 뿐만아니라 TripLog에도 동일하게 적용하여 다음의 두 변수를 도출함
+- **산출 예시**
+
+![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled%203.png)
+
+- 위의 연산을 예약존 뿐만아니라 방문지 정보에도 동일하게 적용하여 다음의 두 변수를 도출함
     - **zone_gini**: 각 member가 이용해본 예약존의 다양성
     - **region_gini**: 각 member가 이용중 방문한 지역의 다양성
 
@@ -119,26 +111,79 @@
     - **interval_med: 이용주기의 중앙값**
     - **usage_time_med: 모든 이용정보의 이용시간 중앙값**
     - **attraction_mean: 모든 이용정보의 attraction_score 평균**
+    
+    <aside>
+    💡 이용주기 및 이용시간에는 극단치가 포함된 경우가 많기 때문에, 각 member의 평범한 이용주기 및 이용시간을 산출하기 위해 산술평균이 아닌 중앙값을 사용하였음
+    
+    </aside>
+    
 - 4개의 변수 모두 member의 **이용목적을 내포**하고 있는 변수이며 각 변수에 따른 member 유형의 가설은 다음과 같음
-    - wd_ratio가 높을 수록 레저보다는 평일 업무나 생활 등 필요에 의해 사용하는 member 일것
-    - interval_med가 클수록 출장 및 여행 등, 빈도가 낮은 용도를 위해 쏘카를 이용할 것
-    - usage_time_med가 작을 수록 지역내 단거리 이용을 위해 이용할 것
-    - attraction_mean이 클수록 주로 여행목적으로 쏘카를 이용할 것
-
-### 3) 결과
-
-- [STEP2.] 단계에서 ~~명의 member에 대한 ~~가지 변수를 가진 ‘member’ Table을 생성함
-- member Table의 모든 속성은 아래와 같음 (군집화에 사용된 변수는 붉은색 처리)
-
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%2072aa660ab14c4d75b7814c3a21200109/Untitled%205.png)
+    - **wd_ratio**가 높을 수록 레저보다는 평일 업무나 생활 등 필요에 의해 사용하는 member 일것
+    - **interval_med**가 클수록 출장 및 여행 등, 빈도가 낮은 용도를 위해 쏘카를 이용할 것
+    - **usage_time_med**가 작을 수록 지역내 단거리 이용을 위해 이용할 것
+    - **attraction_mean**이 클수록 주로 여행목적으로 쏘카를 이용할 것
 
 ## [STEP3.] Member 클러스터링 및 고객 유형 해석
 
-### 1)  변수선별
+- 클러스터링에 사용할 member 특성변수간의 선형관계가 낮아, 서로 다른 특성을 대변해주고 있음을 알 수 있음
+- 극단치를 제거하여, point간의 거리룰 측정하는데 영향을 주지 않도록하였음
+    
+    ![corr_plot.png](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/corr_plot.png)
+    
 
-### 2) UMAP 차원축소
+### 1) UMAP 차원 축소
 
-### 3) SOM (Self Organizing Map) 클러스터링
+- 클러스터링 알고리즘은 고차원의 데이터에 영향을 받음
+- UMAP (Uniform Manifold Approximation and Projection for Dimension Reduction)은 point 들의 연관구조를 잘 유지한 채로 고차원의 데이터를 저차원에 투영하는 효과적인 알고리즘임
+- UMAP을 이용해, 6차원의 데이터를 2차원 공간에 투영하였음
+
+![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled%204.png)
+
+### 2)  SOM 클러스터링
+
+- **HDBSCAN**과 같은 밀도기반 알고리즘을 시도하였으나, 데이터포인트의 군집구조가 명확하지 않아 군집화가 잘 이루어지지 않았음
+- member 들의 특성이 유형에 따라 흑백으로 명확히 구분되기보다, 중간적 성향을 띈 회색영역에도 많은 member가 분포하기 때문으로 보임
+- 저차원 격자에 point를 대응시키는 SOM (Self Organizing Map)알고리즘으로 군집을 할당하였음
+- 배정할 격자공간을 3x1, 2x2, 3x2, 4x2, 3x3 등으로 조정해가며, 군집별 평균 silhouette score가 0.3 이상이며, 모든 point의 silhouette score 평균이 가장 높은 공간 수를 선택하였음
+- 최적 파라미터에 따라 산출된 군집은 총 4개이며, 각 군집의 point 수와 silhouette score는 아래와 같음
+
+![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled%205.png)
+
+### 3) 군집별 속성 EDA
+
+- 군집이 명확한 경계로 나누어지지 않았기 때문에  개별 point의 silhouette score가 0.3 이상인 경우만을 선택해 시각화 하였으며, 각 군집별 변수 분포를 확인하며 군집의 특성을 해석하였음
+    
+    ![cluster in 2dim.png](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/cluster_in_2dim.png)
+    
+- **군집B는 대여존과 방문지가 타 군집에 비해 정형적임**
+
+![cluster_EDA_1.png](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/cluster_EDA_1.png)
+
+- **군집A, B는 평일 대여의 비율이 높고, 비교적 짧은 주기로 이용함**
+- **군집D는 주말 대여 비율이 높고, 가장 대여주기가 긴 군집임**
+
+![cluster_EDA_2.png](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/cluster_EDA_2.png)
+
+- **군집 C는 타 군집에 비해 1회 이용시 긴 시간을 대여하고, 관광지가 많은 지역을 방문함**
+
+![cluster_EDA_3.png](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/cluster_EDA_3.png)
+
+### 4) 군집결과 종합 및 member 유형화
+
+- 위의 결과를 종합하여, 다음과 같이 쏘카 이용 member의 유형을 해석하였음
+
+**cluster A** : 잦은 빈도로 평일 위주 다양한 구간을 이용하는 유형 -> **업무 및 생활 보조형**
+
+**cluster B** : 잦은 빈도로 평일 위주 정해진 구간을 이용하는 유형 -> **통근 보조형**
+
+**cluster C** : 한번 이용시 오랫동안, 관광지를 다니는 유형 -> **여행형**
+
+**cluster D** : 낮은 빈도로 주말 위주 이용하는 유형 -> **주말피크닉형**
+
+<aside>
+💡 유형이 분류된 member (이용이력 5회 이상)는 전체 member 수에 8% 가량에 불과하지만, 전체 이용횟수의 36%가량을 차지하므로 유형세분화를 기반으로 타게팅 전략을 수립하는 것이 비즈니스적으로 유의미할 것임
+
+</aside>
 
 ## [STEP4.] 고객 유형 예측 모델 생성 및 검증
 - 클러스터링을 통해 얻은 네개의 군집을 레이블로 하여 사용 이력이 5회인 초기 이용자들의 유형을 분류하는 모델을 생성함  
