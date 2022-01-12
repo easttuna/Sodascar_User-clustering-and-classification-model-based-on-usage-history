@@ -192,15 +192,15 @@
 
 
 ## `[STEP4.] user 유형 예측 모델 생성 및 검증`
-- 클러스터링을 통해 얻은 네개의 군집을 정답 레이블로 하여 각  이력이 5회인 초기 이용자들의 유형을 분류하는 모델을 생성함  
+- 클러스터링을 통해 얻은 네개의 군집을 정답 레이블로 하여 각  이력이 5회인 초기 user들의 유형을 분류하는 모델을 생성함  
 - 군집 분류를 위해 사용한 6개의 컬럼을 feature로 사용하였으며, user_type의 분류를 타겟으로 함  
 
 ### 1) 학습과 검증 과정
-- feature 데이터를 학습하기 위해, 분류에 유용한 standard scaler를 적용하였음.  
-- 또한, 레이블 간의 불균형 문제를 해결하기 위해, 학습 데이터에 SMOTE OverSampling을 사용하였음.  
-- train set과 test set은 8:2 구성으로 사용하였으며, train set은 10881개, test setd은 2721개 데이터를 사용하였음.  
-- 학습에는 5 k fold validation과 GridSearchCV를 사용하였으며, 모델은 Logistic Regression과 트리 기반 6가지 모델을 사용하고 성능을 비교하였음.
-- 학습 결과, 250개의 분류기를 양상블 학습한 Random Forest model에서  full record와 5record에서 각각 train acc 93.08%와 67.43%, test acc 92.61%와 67.43%으로 가장 좋은 성능을 보였음.
+- feature 데이터를 학습하기 위해, 분류에 유용한 standard scaler를 적용하였음
+- 또한, 레이블 간의 불균형 문제를 해결하기 위해, 학습 데이터에 SMOTE OverSampling을 사용하였음
+- train set과 test set은 8:2 구성으로 사용하였으며, train set은 10881개, test setd은 2721개 데이터를 사용하였음
+- 학습에는 5 k fold validation과 GridSearchCV를 사용하였으며, 모델은 Logistic Regression과 트리 기반 6가지 모델을 사용하고 성능을 비교하였음
+- 학습 결과, 250개의 분류기를 양상블 학습한 Random Forest model에서  full record와 5record에서 각각 train acc 93.08%와 67.43%, test acc 92.61%와 67.43%으로 가장 좋은 성능을 보였음
 
 ### 2) 성능 평가 및 분석  
 - full record와 5record 성능 비교  
@@ -208,20 +208,20 @@ full record 성능 평가
 ![image](https://user-images.githubusercontent.com/65028694/149093307-714908bc-9226-41f7-b734-245f6776ca63.png)![image](https://user-images.githubusercontent.com/65028694/149094151-46f4937a-1efc-465b-af25-99c59a1f22d3.png)  
 5 record 성능 평가  
 ![image](https://user-images.githubusercontent.com/65028694/149094215-74e71c00-86d3-41aa-acbc-9ded2309b06b.png)![image](https://user-images.githubusercontent.com/65028694/149094266-cff69404-c0a5-46c1-b4db-50fde9a1c8ee.png)  
-  - 성능 평가는 Random Forest 학습한 Ensemble model의 test 결과에 기초함.
-  - full record 데이터와 5 recond 데이터를 사용하여 각각 학습 및 추론을 수행한 결과, full record 데이터를 가지고 학습한 결과에서 뚜렷한 성능을 보인다는 것을 확인할 수 있다.
-  - 반면, full record의 경우에 비해 5 record 데이터는 이용자의 전체 이력을 사용하지 않고 초기 5회 이력만을 사용하였기 때문에 군집의 대표성을 확인하는 것에는 다소 부족해 보인다.
+  - 성능 평가는 Random Forest 학습한 Ensemble model의 test 결과에 기초함
+  - full record 데이터와 5 recond 데이터를 사용하여 각각 학습 및 추론을 수행한 결과, full record 데이터를 가지고 학습한 결과에서 뚜렷한 성능을 보인다는 것을 확인할 수 있음
+  - 반면, full record의 경우에 비해 5 record 데이터는 이용자의 전체 이력을 사용하지 않고 초기 5회 이력만을 사용하였기 때문에 군집의 대표성을 확인하는 것에는 다소 부족해 보임
 
 - full record와 5 record confusion matrix 결과 비교  
 ![image](https://user-images.githubusercontent.com/65028694/149093009-2251163b-555c-4bd9-adf9-67a991f5dc40.png)![image](https://user-images.githubusercontent.com/65028694/149092974-01ced712-96f7-457d-9d44-e176bf335de0.png)
-  -  full record와 5 record 데이터를 사용하여 confusion matrix를 살펴본 결과, full record의 경우에 비해 5 record 데이터에서 실제 군집이 1이나, 예측한 군집으로 0으로 예측한 일부 결과를  확인할 수 있다.또한, 실제 군집이 3이나, 예측한 군집이 1 또는 2로 예측한 일부도 확인할 수 있다.
-  -  위와 같은 결과를 통해, '통근 보조형'과 '업무 및 생활보조형'이 비슷한 패턴을 보이고 있음을 의미하며, '주말 피크닉'이 '여행형', '통근 보조형' 사이에서 일부 비슷한 양상을 보인다는 것을 확인할 수 있다.
+  -  full record와 5 record 데이터를 사용하여 confusion matrix를 살펴본 결과, full record의 경우에 비해 5 record 데이터에서 실제 군집이 1이나, 예측한 군집으로 0으로 예측한 일부 결과를  확인할 수 있다.또한, 실제 군집이 3이나, 예측한 군집이 1 또는 2로 예측한 일부도 확인할 수 있음
+  -  위와 같은 결과를 통해, '통근 보조형'과 '업무 및 생활보조형'이 비슷한 패턴을 보이고 있음을 의미하며, '주말 피크닉'이 '여행형', '통근 보조형' 사이에서 일부 비슷한 양상을 보인다는 것을 확인할 수 있음
 
 - feature importance  변화 비교  
 ![image](https://user-images.githubusercontent.com/65028694/149095111-cc8c0413-774f-4576-8c63-38ce91cdab3a.png)
 ![image](https://user-images.githubusercontent.com/65028694/149095151-384c77e1-ffc6-45a5-b42f-d2d69999dd51.png)
-  - full record 데이터로 학습한 결과,'interval_med','usage_med','attraction_mean'순으로 고르게 중요도를 차지하고 있는 반면, 5 record 데이터로 학습한 결과, 'interval_med','usage_med','attraction_mean'외 다른 피쳐는 큰 차이로 적은 중요도를 차지하는 모습을 보인다.
-  - 이것은 전체 이용 내역과 초기 이력을 기반한 군집 분류에 있어, 사용 빈도와 장-단거리 여부, 일상-여행 여부가 중요한 요소임을 나타낸다.
+  - full record 데이터로 학습한 결과,'interval_med','usage_med','attraction_mean'순으로 고르게 중요도를 차지하고 있는 반면, 5 record 데이터로 학습한 결과, 'interval_med','usage_med','attraction_mean'외 다른 피쳐는 큰 차이로 적은 중요도를 차지하는 모습을 보임
+  - 이것은 전체 이용 내역과 초기 이력을 기반한 군집 분류에 있어, 사용 빈도와 장-단거리 여부, 일상-여행 여부가 중요한 요소임을 나타
 
 
 ## `결론`
