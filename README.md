@@ -160,7 +160,7 @@
 ![cluster_in_2dim](https://user-images.githubusercontent.com/79245556/149150999-814e963e-4be6-45d2-b556-57a054d50e52.png)
 
     
-- **군집B는 대여존과 방문지가 타 군집에 비해 정형적임**
+- **군집B는 예약존과 방문지의 지니계수가 낮으므로 대여존과 방문지가 타 군집에 비해 정형적임**
 
 ![cluster_hist1](https://user-images.githubusercontent.com/79245556/149151042-8be101f2-363a-42e8-aefd-72525a3f764f.png)
 
