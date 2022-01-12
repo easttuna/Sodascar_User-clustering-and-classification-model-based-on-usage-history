@@ -7,47 +7,42 @@ from tqdm import tqdm
 
 tqdm.pandas()
 
-# 경로설정
-# data = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/socar_reservation_triplog.csv', 
-#                    parse_dates=['reservation_start_at', 'reservation_return_at', 'member_created_date'])
-
 data = pd.read_csv('./data/socar_reservation_triplog.csv', 
-                   parse_dates=['reservation_start_at', 'reservation_return_at', 'member_created_date'])
+                   parse_dates=[...])
 
 # 사용하지 않는 컬럼 제거
-drop_col = ['reservation_id', 'zone_address', 'car_id', 'reservation_created_lat', 'reservation_created_lng', 
-            'zone_type1', 'zone_type2', 'zone_type3', 'zone_address']
+drop_col = [...]
 
 data = data.drop(columns=drop_col)
 
 # 긴 컬럼명 변경
-data = data.rename(columns={'member_id_encrypted':'member_id'})
+data = data.rename(columns={...})
 
 # 결측치 제거
 data = data.dropna()
 
 # 이용시간(시간)컬럼 생성 및 30분 이상 이용만 선택
-data['usage_time'] =  data.reservation_return_at.sub(data.reservation_start_at).divide(np.timedelta64(1, 'h'))
+data['usage_time'] =  data[...].sub(data[...]).divide(np.timedelta64(1, 'h'))
 data = data[data.usage_time.ge(0.5)]
 
-# 가입기간(일)컬럼 생성 (예약시작시간 - 가입시간)
-data['usage_period'] =  data.reservation_start_at.sub(data.member_created_date).divide(np.timedelta64(1, 'D')).astype(int)
+# 가입기간(일)컬럼 생성
+data['usage_period'] =  data[...].sub(data[...]).divide(np.timedelta64(1, 'D')).astype(int)
 
 # trip 횟수 컬럼 생성
-data['num_trips']  = data.trip.map(lambda triplog: len(triplog.split(',')))
+data['num_trips']  = data[...].map(lambda x: len(x.split(',')))
 
-# is_vroom int 변환
-data.is_vroom = data.is_vroom.astype(int)
+# int 변환
+data[...] = data[...].astype(int)
 
 # 차종 분류 -> compact(경차, 소형차) / sedan(세단) / compact_SUV (소형 SUV) / SUV(소형제외 SUV) / EV(전기차) / van (승합차)
 car_type = pd.read_csv('./data/car_group.csv')
 car_labeler = {name:label for name, label in zip(car_type.name, car_type.group)}
-data['car_type'] = data.car_name.map(car_labeler)
+data['car_type'] = data[...].map(car_labeler)
 
 
 # triplog에서 발생한 적있는 지역(시군구) 데이터프레임 생성
 regions = list()
-for triplog in data.trip.str.split(','):
+for triplog in data[...].str.split(','):
     regions.extend(triplog)
 regions = [r.strip() for r in list(set(regions))]
 region_df = pd.DataFrame({'name':regions})
@@ -85,7 +80,7 @@ def get_trip_feature(triplog, region_table):
 
 # data의 각 행별로 방문지 특성변수를 종합한 데이터프레임 생성
 print('mapping regional features...')
-trip_feautures = data.trip.progress_map(lambda log: get_trip_feature(log, region_df))
+trip_feautures = data[...].progress_map(lambda log: get_trip_feature(log, region_df))
 print('done')
 trip_feautures = pd.DataFrame(list(trip_feautures.values))
 
@@ -99,7 +94,7 @@ def drop_dup_regions(triplog):
     triplog = [region.strip() for region in set(triplog)]
     return '_'.join(triplog)
 
-data.trip = data.trip.map(drop_dup_regions)
+data[...] = data[...].map(drop_dup_regions)
 
 # 처리한 테이블 저장
-data.to_csv('./data/socar_usage_processed_coord.csv', index=False)
+data.to_csv('./data/socar_usage_processed.csv', index=False)

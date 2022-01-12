@@ -133,8 +133,12 @@ data/socar_reservation_triplog.csv
 data/socar_usage_processed.csv
 data/socar_usage_processed_coord.csv
 
+# package
+sklearn_som
+
 # private directory
 cmj/
 
 # for security
 컬럼정의서.xlsx
+data
