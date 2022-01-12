@@ -137,7 +137,7 @@
 - UMAP (Uniform Manifold Approximation and Projection for Dimension Reduction)은 point 들의 연관구조를 잘 유지한 채로 고차원의 데이터를 저차원에 투영하는 효과적인 알고리즘임
 - UMAP을 이용해, 6차원의 데이터를 2차원 공간에 투영하였음
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled%204.png)
+![umap_result](https://user-images.githubusercontent.com/79245556/149080893-d19afe49-a8a8-43fd-ad37-ed4874150fca.png)
 
 ### 2)  SOM 클러스터링
 
@@ -147,7 +147,8 @@
 - 배정할 격자공간을 3x1, 2x2, 3x2, 4x2, 3x3 등으로 조정해가며, 군집별 평균 silhouette score가 0.3 이상이며, 모든 point의 silhouette score 평균이 가장 높은 공간 수를 선택하였음
 - 최적 파라미터에 따라 산출된 군집은 총 4개이며, 각 군집의 point 수와 silhouette score는 아래와 같음
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled%205.png)
+![cluster_result](https://user-images.githubusercontent.com/79245556/149080918-e14c8026-eb08-4754-b66b-3273318992ab.png)
+
 
 ### 3) 군집별 속성 EDA
 
