@@ -96,7 +96,7 @@
     
 - **산출 예시**
 
-![gini_example_resized](https://user-images.githubusercontent.com/79245556/149087512-4065f1c5-9a43-44f5-a94b-3def39de066a.png)
+![gini_example_resized](https://user-images.githubusercontent.com/79245556/149087722-0147ef46-720a-4856-83ff-c45dbca965d3.png)
 
 - 위의 연산을 예약존 뿐만아니라 방문지 정보에도 동일하게 적용하여 다음의 두 변수를 도출함
     - **zone_gini**: 각 member가 이용해본 예약존의 다양성
@@ -127,7 +127,7 @@
 - 클러스터링에 사용할 member 특성변수간의 선형관계가 낮아, 서로 다른 특성을 대변해주고 있음을 알 수 있음
 - 극단치를 제거하여, point간의 거리룰 측정하는데 영향을 주지 않도록하였음
     
-![corr_plot_resized](https://user-images.githubusercontent.com/79245556/149087525-1401d4da-6bef-44a6-be9f-81735a43f74c.png)
+![corr_plot_resized](https://user-images.githubusercontent.com/79245556/149087715-57f15952-ebbb-48dc-a72c-75195c9bf746.png)
 
     
 
