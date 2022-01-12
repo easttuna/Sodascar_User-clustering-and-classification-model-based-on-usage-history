@@ -131,17 +131,16 @@
 
 - 클러스터링에 사용할 user 특성변수간의 **선형관계가 작아**, 서로 **다른 특성**을 대변해주고 있음을 알 수 있음
 - 극단치를 제거하여, point간의 거리 측정하는데 영향을 주지 않도록하였음
+- 특성 변수 간의 상관 관계
+<center><img src="https://user-images.githubusercontent.com/79245556/149090911-f055b3ff-f08b-4384-8ad4-7d453e043b09.png"></center>
     
-![corr_plot_resized](https://user-images.githubusercontent.com/79245556/149090911-f055b3ff-f08b-4384-8ad4-7d453e043b09.png)
-
-
 ### 1) UMAP 차원 축소
 
 - 클러스터링 알고리즘은 고차원의 데이터에 영향을 받음
 - UMAP (Uniform Manifold Approximation and Projection for Dimension Reduction)은 point 들의 연관구조를 잘 유지한 채로 **고차원의 데이터를 저차원에 투영**하는 효과적인 알고리즘임
 - UMAP을 이용해, 6차원의 데이터를 2차원 공간에 투영하였음
+<center><img src="https://user-images.githubusercontent.com/79245556/149080893-d19afe49-a8a8-43fd-ad37-ed4874150fca.png"></center>
 
-![umap_result](https://user-images.githubusercontent.com/79245556/149080893-d19afe49-a8a8-43fd-ad37-ed4874150fca.png)
 
 ### 2)  SOM 클러스터링
 
@@ -213,8 +212,9 @@ full record 성능 평가
   - 반면, full record의 경우에 비해 5 record 데이터는 이용자의 전체 이력을 사용하지 않고 초기 5회 이력만을 사용하였기 때문에 군집의 대표성을 확인하는 것에는 다소 부족해 보임
 
 - full record와 5 record confusion matrix 결과 비교  
-![image](https://user-images.githubusercontent.com/65028694/149146454-f5673f16-4661-4736-83c8-511e6b3c9643.png)![image](https://user-images.githubusercontent.com/65028694/149145778-04df5fe3-9413-47f7-95dd-a3707b58c91a.png)  
-  -  full record와 5 record 데이터를 사용하여 confusion matrix를 살펴본 결과, full record의 경우에 비해 5 record 데이터에서 실제 군집이 1이나, 예측한 군집으로 0으로 예측한 일부 결과를  확인할 수 있다.또한, 실제 군집이 3이나, 예측한 군집이 1 또는 2로 예측한 일부도 확인할 수 있음
+<img src="https://user-images.githubusercontent.com/65028694/149147565-e4503379-8f61-4293-8e29-0253e0578f75.png" width="500" height="400"><img src="https://user-images.githubusercontent.com/65028694/149145778-04df5fe3-9413-47f7-95dd-a3707b58c91a.png" width="500" height="400">
+  
+  -  full record와 5 record 데이터를 사용하여 confusion matrix를 살펴본 결과, full record의 경우에 비해 5 record 데이터에서 실제 군집이 B이나, 예측한 군집으로 A으로 예측한 일부 결과를  확인할 수 있다.또한, 실제 군집이 C이나, 예측한 군집이 B 또는 C로 예측한 일부도 확인할 수 있음
   -  위와 같은 결과를 통해, '통근 보조형'과 '업무 및 생활보조형'이 비슷한 패턴을 보이고 있음을 의미하며, '주말 피크닉'이 '여행형', '통근 보조형' 사이에서 일부 비슷한 양상을 보인다는 것을 확인할 수 있음
 
 - feature importance  변화 비교  
