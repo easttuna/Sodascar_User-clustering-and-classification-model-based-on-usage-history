@@ -58,7 +58,7 @@
 
 ![region_score_example](https://user-images.githubusercontent.com/79245556/149073677-208e9fca-0524-42ea-84d4-ad707492f8ee.png)
 
-## [STEP2.] Member별 이용정보 집계, Member Table 생성
+## `[STEP2.] Member별 이용정보 집계, Member Table 생성`
 
 - 각각의 member는 복수의 이용정보를 가지고 있으며, 이를 해당 member의 특성을 잘 표현할 수 있는 방향으로 종합하여 member 변수를 생성해야함
 - 이용이력이 적은 member의 경우 소량의 정보로 member의 특성이 잘못 파악될 가능성이 있으므로, 이용이력이 최소 5회 존재하는 member 만을 대상으로 Member 변수를 생성하였음
@@ -121,7 +121,7 @@
     - **usage_time_med**가 작을 수록 지역내 단거리 이용을 위해 이용할 것
     - **attraction_mean**이 클수록 주로 여행목적으로 쏘카를 이용할 것
 
-## [STEP3.] Member 클러스터링 및 고객 유형 해석
+## `[STEP3.] Member 클러스터링 및 고객 유형 해석`
 
 - 클러스터링에 사용할 member 특성변수간의 선형관계가 낮아, 서로 다른 특성을 대변해주고 있음을 알 수 있음
 - 극단치를 제거하여, point간의 거리룰 측정하는데 영향을 주지 않도록하였음
@@ -170,7 +170,7 @@
 
 ![cluster_hist3](https://user-images.githubusercontent.com/79245556/149073832-379a804f-3908-4141-98d2-989b6a1ac920.png)
 
-### 4) 군집결과 종합 및 member 유형화
+### `4) 군집결과 종합 및 member 유형화`
 
 - 위의 결과를 종합하여, 다음과 같이 쏘카 이용 member의 유형을 해석하였음
 
