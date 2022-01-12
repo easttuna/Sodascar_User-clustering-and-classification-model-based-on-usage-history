@@ -206,12 +206,16 @@
 - full record와 5record 성능 비교  
 full record 성능 평가  
 ![image](https://user-images.githubusercontent.com/65028694/149093307-714908bc-9226-41f7-b734-245f6776ca63.png)![image](https://user-images.githubusercontent.com/65028694/149094151-46f4937a-1efc-465b-af25-99c59a1f22d3.png)  
-5record 성능 평가  
+5 record 성능 평가  
 ![image](https://user-images.githubusercontent.com/65028694/149094215-74e71c00-86d3-41aa-acbc-9ded2309b06b.png)![image](https://user-images.githubusercontent.com/65028694/149094266-cff69404-c0a5-46c1-b4db-50fde9a1c8ee.png)  
--> 성능 평가는 Random Forest 학습한 Ensemble model의 test 결과에 기초함.
+  - 성능 평가는 Random Forest 학습한 Ensemble model의 test 결과에 기초함.
+  - full record 데이터와 5 recond 데이터를 사용하여 각각 학습 및 추론을 수행한 결과, ....
 
-- full record와 5record confusion matrix 결과 비교  
+- full record와 5 record confusion matrix 결과 비교  
 ![image](https://user-images.githubusercontent.com/65028694/149093009-2251163b-555c-4bd9-adf9-67a991f5dc40.png)![image](https://user-images.githubusercontent.com/65028694/149092974-01ced712-96f7-457d-9d44-e176bf335de0.png)
+  -  full record와 5 record 데이터를 사용하여 confusion matrix를 살펴본 결과, full record의 경우에 비해 5 record 데이터에서 실제 군집이 1이나, 예측한 군집으로 0으로 예측한 일부 결과를  확인할 수 있다.
+  -  또한, 실제 군집이 3이나, 예측한 군집이 1 또는 2로 예측한 잃부도 확인할 수 있다.
+  -  이것은, ....
 
 - feature importance  변화 비교  
 ![image](https://user-images.githubusercontent.com/65028694/149095111-cc8c0413-774f-4576-8c63-38ce91cdab3a.png)
