@@ -1,5 +1,7 @@
+! git pull하여 사용해주세요 
 
 # SOCAR 이용이력 기반 고객 세분화와 고객 유형 예측모델
+
 ## 프로젝트 소개
 
 본 프로젝트에서는 SOCAR 고객들의 이용이력에 기반하여 설명가능하며, 비즈니스적으로 의미 있는 고객 유형을 도출하고자 하였습니다. 또한 이용자의 일부 이용이력으로 고객 유형을 예측하는 모델을 만듦으로써 신속하게 고객유형을 파악할수 있도록 하였습니다. 
@@ -24,23 +26,23 @@
 - 제공받은 쏘카 이용정보 테이블을 가공하여 각 ‘이용’의 특성과 목적을 나타내는 변수를 가공 및 생성함
 - 기존재하는 컬럼을 변환하고  해당 이용자가 방문한 지역정보를 통해 외부데이터를 매핑함
 
-### [STEP2.] Member별 이용정보 집계, Member Table 생성
+### [STEP2.] Meber별 이용정보 집계, Member Table 생성
 
 - 이전 단계에서 정제된 쏘카 이용정보를 각 멤버별로 집계하여 각 멤버를 대표하는 변수를 생성함
-- 이용정보 테이블의 단순 평균 뿐만 아니라 각 이용간의 간격 (이용 주기) 등 개별 이용정보 record로는 알 수 없는 member의 특성을 파악함
+- 이용정보 테이블의 단순 평균 뿐만 아니라 각 이용간의 간격 (이용 주기) 등 개별 이용정보 record로는 알 수 없는 Member의 특성을 파악함
 
 ### [STEP3.] Member 클러스터링 및 고객 유형 해석
 
-- member 변수에서 member의 유형을 구분해낼 수 있는 주요변수를 선정하여 차원축소, 클러스터링 알고리즘을 사용하여 member를 군집화함
+- Member 변수에서 member의 유형을 구분해낼 수 있는 주요변수를 선정하여 차원축소, 클러스터링 알고리즘을 사용하여 member를 군집화함
 - 군집화된 member에 대한 EDA를 바탕으로 각 군집을 ‘**고객 유형**’으로 해석함
 
 ### [STEP4.] 고객 유형 예측 모델 생성 및 검증
 
-- ‘__고객 유형__’을 정답라벨로 부여하고, member의 특성으로 이를 예측하는 Multiclass Classification 모델을 만들고 검증함
+- ‘**고객 유형’**을 정답라벨로 부여하고, member의 특성으로 이를 예측하는 Multiclass Classification 모델을 만들고 검증함
 - 이때 member의 특성은 이용정보에 존재하는 각 member 별 최초 5회의 이용이력만으로 생성하여 예측결과의 활용이 유의미하도록 함 
 (cf. member 군집화를 위하여 [STEP2.]에서는 약 1년간의 모든 이용정보를 사용하여 member 변수를 생성하였음)
 
-## `[STEP1.] ‘쏘카 이용정보’ 전처리 및 변수 가공`
+## [STEP1.] ‘쏘카 이용정보’ 전처리 및 변수 가공
 
 ### 1) 전처리 및 변수 생성
 
@@ -58,7 +60,7 @@
 
 ![region_score_example](https://user-images.githubusercontent.com/79245556/149073677-208e9fca-0524-42ea-84d4-ad707492f8ee.png)
 
-## `[STEP2.] Member별 이용정보 집계, Member Table 생성`
+## [STEP2.] Member별 이용정보 집계, Member Table 생성
 
 - 각각의 member는 복수의 이용정보를 가지고 있으며, 이를 해당 member의 특성을 잘 표현할 수 있는 방향으로 종합하여 member 변수를 생성해야함
 - 이용이력이 적은 member의 경우 소량의 정보로 member의 특성이 잘못 파악될 가능성이 있으므로, 이용이력이 최소 5회 존재하는 member 만을 대상으로 Member 변수를 생성하였음
@@ -121,13 +123,14 @@
     - **usage_time_med**가 작을 수록 지역내 단거리 이용을 위해 이용할 것
     - **attraction_mean**이 클수록 주로 여행목적으로 쏘카를 이용할 것
 
-## `[STEP3.] Member 클러스터링 및 고객 유형 해석`
+## [STEP3.] Member 클러스터링 및 고객 유형 해석
 
 - 클러스터링에 사용할 member 특성변수간의 선형관계가 낮아, 서로 다른 특성을 대변해주고 있음을 알 수 있음
 - 극단치를 제거하여, point간의 거리룰 측정하는데 영향을 주지 않도록하였음
     
 ![corr_plot](https://user-images.githubusercontent.com/79245556/149073732-c7a70eb9-32a3-4e73-b4cb-9867b85b703b.png)
 
+    
 
 ### 1) UMAP 차원 축소
 
@@ -135,7 +138,7 @@
 - UMAP (Uniform Manifold Approximation and Projection for Dimension Reduction)은 point 들의 연관구조를 잘 유지한 채로 고차원의 데이터를 저차원에 투영하는 효과적인 알고리즘임
 - UMAP을 이용해, 6차원의 데이터를 2차원 공간에 투영하였음
 
-![umap_result](https://user-images.githubusercontent.com/79245556/149074009-6d820f85-6a1a-4f36-80f5-61a7f9a6b5b6.png)
+![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled%204.png)
 
 ### 2)  SOM 클러스터링
 
@@ -145,7 +148,7 @@
 - 배정할 격자공간을 3x1, 2x2, 3x2, 4x2, 3x3 등으로 조정해가며, 군집별 평균 silhouette score가 0.3 이상이며, 모든 point의 silhouette score 평균이 가장 높은 공간 수를 선택하였음
 - 최적 파라미터에 따라 산출된 군집은 총 4개이며, 각 군집의 point 수와 silhouette score는 아래와 같음
 
-![cluster_result](https://user-images.githubusercontent.com/79245556/149074125-452529ad-b62d-42c2-8c2b-bfb4586f5b05.png)
+![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled%205.png)
 
 ### 3) 군집별 속성 EDA
 
@@ -185,9 +188,9 @@
 
 </aside>
 
-## `[STEP4.] 고객 유형 예측 모델 생성 및 검증`
+## [STEP4.] 고객 유형 예측 모델 생성 및 검증
 - 클러스터링을 통해 얻은 네개의 군집을 레이블로 하여 사용 이력이 5회인 초기 이용자들의 유형을 분류하는 모델을 생성함  
-- 군집 분류를 위해 사용한 6개의 컬럼을 feature로 사용하였으, member_type의 분류를 타겟으로 함  
+- 군집 분류를 위해 사용한 6개의 컬럼을 feature로 사용하였으며, member_type의 분류를 타겟으로 함  
 
 ### 1) 학습과 검증 과정
 - feature 데이터를 학습하기 위해, 분류에 유용한 standard scaler를 적용하였음.  
@@ -196,9 +199,18 @@
 - 학습에는 2 cross validation과 GridSearchCV를 사용하였으며, 모델은 Logistic Regression과 트리 기반 6가지 모델을 사용하고 성능을 비교하였음.
 - 학습 결과, Logistic Regression, Decision Tree, Random Forest, xgboost 모델을 Voting soft로 학습한 Ensemble model에서  train acc %, test acc% 으로 가장 좋은 성능을 보였음.
 
-### 2) 성능 평가 및 분석
-- full record와 5record 성능 비교
+### 2) 성능 평가 및 분석  
+성능 평가는 Voting Soft로 학습한 Ensemble model의 test 결과에 기초함  
+- full record와 5record 성능 비교  
+full record 성능 평가
 
-- confusion matrix 결과 비교
-![image](https://user-images.githubusercontent.com/65028694/149071989-363a59ea-a1ff-4121-8a10-4bcea9450229.png)
+5record 성능 평가  
+![image](https://user-images.githubusercontent.com/65028694/149075888-5c9dc18b-a023-44d6-95d6-4b612e99dfcf.png)
+![image](https://user-images.githubusercontent.com/65028694/149075844-66a2339d-a8eb-489e-9d15-329652f5b662.png)
+
+
+- full record와 5record confusion matrix 결과 비교  
+
+![image](https://user-images.githubusercontent.com/65028694/149076644-f5fd0518-39af-4cd4-843e-42dfd9549c98.png)
+
 
