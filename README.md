@@ -210,7 +210,7 @@ full record 성능 평가
 ![image](https://user-images.githubusercontent.com/65028694/149094215-74e71c00-86d3-41aa-acbc-9ded2309b06b.png)![image](https://user-images.githubusercontent.com/65028694/149094266-cff69404-c0a5-46c1-b4db-50fde9a1c8ee.png)  
   - 성능 평가는 Random Forest 학습한 Ensemble model의 test 결과에 기초함.
   - full record 데이터와 5 recond 데이터를 사용하여 각각 학습 및 추론을 수행한 결과, full record 데이터를 가지고 학습한 결과에서 뚜렷한 성능을 보인다는 것을 확인할 수 있다.
-  - 반면, full record의 경우에 비해 5 record 데이터는 ... 
+  - 반면, full record의 경우에 비해 5 record 데이터는 이용자의 전체 이력을 사용하지 않고 초기 5회 이력만을 사용하였기 때문에 군집의 대표성을 확인하는 것에는 다소 부족해 보인다.
 
 - full record와 5 record confusion matrix 결과 비교  
 ![image](https://user-images.githubusercontent.com/65028694/149093009-2251163b-555c-4bd9-adf9-67a991f5dc40.png)![image](https://user-images.githubusercontent.com/65028694/149092974-01ced712-96f7-457d-9d44-e176bf335de0.png)
@@ -220,7 +220,8 @@ full record 성능 평가
 - feature importance  변화 비교  
 ![image](https://user-images.githubusercontent.com/65028694/149095111-cc8c0413-774f-4576-8c63-38ce91cdab3a.png)
 ![image](https://user-images.githubusercontent.com/65028694/149095151-384c77e1-ffc6-45a5-b42f-d2d69999dd51.png)
-
+  - full record 데이터로 학습한 결과,'interval_med','usage_med','attraction_mean'순으로 고르게 중요도를 차지하고 있는 반면, 5 record 데이터로 학습한 결과, 'interval_med','usage_med','attraction_mean'외 다른 피쳐는 큰 차이로 적은 중요도를 차지하는 모습을 보인다.
+  - 이것은 전체 이용 내역과 초기 이력을 기반한 군집 분류에 있어, 사용 빈도와 장-단거리 여부, 일상-여행 여부가 중요한 요소임을 나타낸다.
 
 
 ## `결론`
