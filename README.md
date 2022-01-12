@@ -36,7 +36,7 @@
 
 ### [STEP4.] 고객 유형 예측 모델 생성 및 검증
 
-- ‘**고객 유형’**을 정답라벨로 부여하고, member의 특성으로 이를 예측하는 Multiclass Classification 모델을 만들고 검증함
+- ‘**고객 유형**’을 정답라벨로 부여하고, member의 특성으로 이를 예측하는 Multiclass Classification 모델을 만들고 검증함
 - 이때 member의 특성은 이용정보에 존재하는 각 member 별 최초 5회의 이용이력만으로 생성하여 예측결과의 활용이 유의미하도록 함  
 (cf. member 군집화를 위하여 [STEP2.]에서는 약 1년간의 모든 이용정보를 사용하여 member 변수를 생성하였음)  
 
