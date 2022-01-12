@@ -19,7 +19,7 @@
 
 ## 작업 개요
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled.png)
+
 
 ### [STEP1.] ‘쏘카 이용정보’ 전처리 및 변수 가공
 
@@ -58,7 +58,7 @@
 - 한국문화정보원의 ‘**국내여행 소비 역세권지도**’에 시군구별 관광지 수, 음식점 수, 쇼핑점 수와 인구수가 존재함 ([https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=98124fc8-5024-4b27-b9a7-5631021ed5a8](https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=98124fc8-5024-4b27-b9a7-5631021ed5a8))
 - 방문지역별 인구 천명 대비 관광지, 음식점, 쇼핑점 수를 구한 뒤, 모든 지역에 대해 평균내어 해당 이용의 전반적인 방문지 특성을 산출함
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled%202.png)
+![region_score_example](https://user-images.githubusercontent.com/79245556/149073677-208e9fca-0524-42ea-84d4-ad707492f8ee.png)
 
 ## [STEP2.] Member별 이용정보 집계, Member Table 생성
 
@@ -97,7 +97,7 @@
     
 - **산출 예시**
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/Untitled%203.png)
+![gini_example](https://user-images.githubusercontent.com/79245556/149073708-ccc79dae-d625-4ea7-9c5e-87a200ca3c07.png)
 
 - 위의 연산을 예약존 뿐만아니라 방문지 정보에도 동일하게 적용하여 다음의 두 변수를 도출함
     - **zone_gini**: 각 member가 이용해본 예약존의 다양성
@@ -128,7 +128,8 @@
 - 클러스터링에 사용할 member 특성변수간의 선형관계가 낮아, 서로 다른 특성을 대변해주고 있음을 알 수 있음
 - 극단치를 제거하여, point간의 거리룰 측정하는데 영향을 주지 않도록하였음
     
-    ![corr_plot.png](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/corr_plot.png)
+![corr_plot](https://user-images.githubusercontent.com/79245556/149073732-c7a70eb9-32a3-4e73-b4cb-9867b85b703b.png)
+
     
 
 ### 1) UMAP 차원 축소
@@ -153,20 +154,22 @@
 
 - 군집이 명확한 경계로 나누어지지 않았기 때문에  개별 point의 silhouette score가 0.3 이상인 경우만을 선택해 시각화 하였으며, 각 군집별 변수 분포를 확인하며 군집의 특성을 해석하였음
     
-    ![cluster in 2dim.png](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/cluster_in_2dim.png)
+![cluster_in_2dim](https://user-images.githubusercontent.com/79245556/149073775-61370616-01c5-43a8-aa5e-f97195237f97.png)
+
     
 - **군집B는 대여존과 방문지가 타 군집에 비해 정형적임**
 
-![cluster_EDA_1.png](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/cluster_EDA_1.png)
+![cluster_hist1](https://user-images.githubusercontent.com/79245556/149073807-0206b65a-9b9b-4e01-a1fd-220defe6b9e6.png)
+
 
 - **군집A, B는 평일 대여의 비율이 높고, 비교적 짧은 주기로 이용함**
 - **군집D는 주말 대여 비율이 높고, 가장 대여주기가 긴 군집임**
 
-![cluster_EDA_2.png](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/cluster_EDA_2.png)
+![cluster_hist2](https://user-images.githubusercontent.com/79245556/149073827-a1bf0063-9098-4503-9abc-c9f9b6c7a7e2.png)
 
 - **군집 C는 타 군집에 비해 1회 이용시 긴 시간을 대여하고, 관광지가 많은 지역을 방문함**
 
-![cluster_EDA_3.png](%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD_public%20dc8fa25347814471b2500b3701ec557e/cluster_EDA_3.png)
+![cluster_hist3](https://user-images.githubusercontent.com/79245556/149073832-379a804f-3908-4141-98d2-989b6a1ac920.png)
 
 ### 4) 군집결과 종합 및 member 유형화
 
